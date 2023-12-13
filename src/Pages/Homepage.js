@@ -12,6 +12,7 @@ const Homepage=()=>{
             <ul>
             {emails.map(email => (
                 <li key={email.id}>
+                  <li>{email.id}</li>
                 <strong>{email.subject}</strong>
                 <p>
                     <strong>From:</strong> {email.sender} | <strong>To:</strong> {email.recipient}

@@ -1,20 +1,27 @@
-import React, { useEffect } from 'react';
-import "../Assets/Style/loading.css";
+import React, { useEffect, useState } from 'react';
+import { navigate } from 'react-router-dom';
+import {Homepage} from './Homepage'
+import '../Assets/Style/loading.css';
 
 const LoadingComponent = () => {
+  const [animationTime, setAnimationTime] = useState(2); // Set the animation time in seconds
+
   useEffect(() => {
-    // Add any additional logic or cleanup here
-    return () => {
-      // Cleanup logic (if needed)
-    };
-  }, []);
+    const timeoutId = setTimeout(() => {
+      // Redirect to another component after the animation time
+      navigate(Homepage);
+    }, (animationTime + 1) * 1000); // Add 1 second buffer for safety
+
+    return () => clearTimeout(timeoutId); // Cleanup the timeout on component unmount
+
+  }, [animationTime]);
 
   return (
     <div id="loading">
       <div style={{ bottom: 0, left: 0, overflow: 'hidden', position: 'absolute', right: 0, top: 0 }}>
         <div
           style={{
-            animation: 'a-h .5s 1.25s 1 linear forwards, a-nt .6s 1.25s 1 cubic-bezier(0,0,.2,1)',
+            animation: `a-h .5s ${animationTime}s 1 linear forwards, a-nt .6s ${animationTime}s 1 cubic-bezier(0,0,.2,1)`,
             background: '#eee',
             borderRadius: '50%',
             height: '800px',
@@ -23,7 +30,7 @@ const LoadingComponent = () => {
             position: 'absolute',
             top: '50%',
             transform: 'scale(0)',
-            width: '800px'
+            width: '800px',
           }}
         ></div>
       </div>
@@ -257,7 +264,7 @@ const LoadingComponent = () => {
           </div>
         </div>
         <div id="nlpt"></div>
-        <div style={{ animation: 'a-s .25s 1.25s 1 forwards', opacity: 0 }} className="msg">
+        <div style={{ animation: `a-s .25s ${animationTime}s 1 forwards`, opacity: 0 }} className="msg">
           Loading Gmail&hellip;
         </div>
       </div>
