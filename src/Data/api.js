@@ -1127,6 +1127,7 @@ const Changeid = (email)=>{
     for(let i=0;i<data.length;i++){
         data[i].id=uid
     }
+    console.log(data)
     return {data};
 }
 
