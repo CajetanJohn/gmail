@@ -1,4 +1,4 @@
-{
+const email ={
     "emails": [
       {
         "id": 1,
@@ -299,8 +299,8 @@
             "signed_by": "Olivia Martin",
             "security": "encrypted",
             "starred": false
-          },
-          {
+      },
+      {
             "id": 127,
             "sender": "adam.jenkins@example.com",
             "recipient": "susan.davis@example.com",
@@ -312,7 +312,7 @@
             "security": "encrypted",
             "starred": true
           },
-          {
+      {
             "id": 128,
             "sender": "linda.smith@example.com",
             "recipient": "robert.white@example.com",
@@ -1116,4 +1116,18 @@
                     "security": "encrypted",
                     "starred": true
                   }
-                ]}
+                ]
+}
+
+const Changeid = (email)=>{
+    const data =email.emails;
+    const uid = function(){
+        return Date.now().toString(36) + Math.random().toString(36).substr(2);
+    }
+    for(let i=0;i<data.length;i++){
+        data[i].id=uid
+    }
+    return {data};
+}
+
+export const EmailData = Changeid(email)
