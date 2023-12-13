@@ -5,7 +5,7 @@ const Homepage=()=>{
     const [emails, updateEmails]=useState(EmailData)
     useEffect(()=>{
         updateEmails(EmailData);
-    }, EmailData)
+    }, [])
     return (
         <div>
             <h1>Email List with Updated IDs</h1>
