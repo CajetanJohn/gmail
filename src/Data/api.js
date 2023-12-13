@@ -1128,7 +1128,7 @@ const Changeid = (email)=>{
         data[i].id=uid
     }
     console.log(data)
-    return {data};
+    return data;
 }
 
 export const EmailData = Changeid(email)
