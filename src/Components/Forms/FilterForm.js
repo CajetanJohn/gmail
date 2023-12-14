@@ -31,17 +31,17 @@ const EmailSearchForm = ({ onSearch }) => {
 
       <div>
         <label htmlFor="subject">Subject: </label>
-        <input type="text" id="subject" value={searchParams.to} onChange={(e)=>{handleInputChange('subject', e.target.value)}}/>
+        <input type="text" id="subject" value={searchParams.subject} onChange={(e)=>{handleInputChange('subject', e.target.value)}}/>
       </div>
 
       <div>
         <label htmlFor="includes">Includes the words</label>
-        <input type="text" id="includes" value={searchParams.to} onChange={(e)=>{handleInputChange('includes', e.target.value)}}/>
+        <input type="text" id="includes" value={searchParams.includes} onChange={(e)=>{handleInputChange('includes', e.target.value)}}/>
       </div>
 
       <div>
         <label htmlFor="excludes">Doesn't have</label>
-        <input type="text" id="excludes" value={searchParams.to} onChange={(e)=>{handleInputChange('excludes', e.target.value)}}/>
+        <input type="text" id="excludes" value={searchParams.excludes} onChange={(e)=>{handleInputChange('excludes', e.target.value)}}/>
       </div>
       
       <div>

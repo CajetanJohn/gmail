@@ -6,8 +6,8 @@ const useEmailSearch = () => {
     from: '',
     to: '',
     subject: '',
-    includesWord: '',
-    doesNotHave: '',
+    includes: '',
+    excludes: '',
     size: {
       comparison: '', // 'greater', 'less', 'specific'
       value: '',
@@ -27,8 +27,8 @@ const useEmailSearch = () => {
         checkTextMatch(email.sender, searchParams.from) &&
         checkTextMatch(email.recipient, searchParams.to) &&
         checkTextMatch(email.subject, searchParams.subject) &&
-        checkTextMatch(email.body, searchParams.includesWord) &&
-        checkTextNotMatch(email.body, searchParams.doesNotHave) &&
+        checkTextMatch(email.body, searchParams.includes) &&
+        checkTextNotMatch(email.body, searchParams.excludes) &&
         checkSize(email.size, searchParams.size) &&
         withinDateRange
       );

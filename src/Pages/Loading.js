@@ -10,13 +10,8 @@ const LoadingComponent = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       // Redirect to another component after the animation time
-<<<<<<< HEAD
       navigate('/home');
     }, (animationTime + 1) * 1000); // Add 1 second buffer for safety
-=======
-      navigate('/home')
-    }, (animationTime + 1) * 10000); // Add 1 second buffer for safety
->>>>>>> 7ac6abb70e1bd20451575257504ff658fc417ae7
 
     return () => clearTimeout(timeoutId); // Cleanup the timeout on component unmount
 
