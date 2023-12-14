@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {Homepage} from './Homepage'
 import '../Assets/Style/loading.css';
 
 const LoadingComponent = () => {
+  const navigate = useNavigate();
   const [animationTime, setAnimationTime] = useState(2); // Set the animation time in seconds
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       // Redirect to another component after the animation time
-      navigate(Homepage);
+      navigate('/home');
     }, (animationTime + 1) * 1000); // Add 1 second buffer for safety
 
     return () => clearTimeout(timeoutId); // Cleanup the timeout on component unmount

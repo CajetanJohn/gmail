@@ -1118,17 +1118,4 @@ const email ={
                   }
                 ]
 }
-
-const Changeid = (email)=>{
-    const data =email.emails;
-    const uid = function(){
-        return Date.now().toString(36) + Math.random().toString(36).substr(2);
-    }
-    for(let i=0;i<data.length;i++){
-        data[i].id=uid
-    }
-    console.log(data)
-    return data;
-}
-
-export const EmailData = Changeid(email)
+export const EmailData = email.emails
