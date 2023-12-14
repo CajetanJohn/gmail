@@ -59,10 +59,7 @@ const EmailSearchForm = ({ onSearch }) => {
 
       <div>
         <label htmlFor="sizeComparison">Size</label>
-        <select
-          id="sizeComparison"
-          value={searchParams.size.comparison}
-          onChange={(e) => handleSizeChange("comparison", e.target.value)}
+        <select id="sizeComparison" value={searchParams.size.comparison} onChange={(e) => handleInputChange("comparison", e.target.value)}
         >
           <option value="">Any Size</option>
           <option value="greater">Greater Than</option>
@@ -71,11 +68,11 @@ const EmailSearchForm = ({ onSearch }) => {
         <input
           type="number"
           value={searchParams.size.value}
-          onChange={(e) => handleSizeChange("value", e.target.value)}
+          onChange={(e) => handleInputChange("value", e.target.value)}
         />
         <select
           value={searchParams.size.unit}
-          onChange={(e) => handleSizeChange("unit", e.target.value)}
+          onChange={(e) => handleInputChange("unit", e.target.value)}
         >
           <option value="">Any Unit</option>
           <option value="MB">MB</option>

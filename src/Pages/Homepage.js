@@ -1,39 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { EmailData } from "../Utils/Data/DataFetch.js";
-import FilterForm from "../Components/Forms/FilterForm.js"
+// Homepage.js
+import React, { useState, useEffect } from 'react';
+import { EmailData } from '../Utils/Data/DataFetch.js';
+import FilterForm from '../Components/Forms/FilterForm.js';
+import { Routes, Route, Link, useParams, Outlet } from 'react-router-dom';
+import OpenMail from '../Components/Sections//OpenMail';
 
-const Homepage = () => {
+const EmailList = ({ emails }) => (
+  <ul>
+    {emails.map((email) => (
+      <li key={email.id}>
+        <Link to={`/home/email/${email.id}`}>
+          <div>{email.sender}</div>
+          <div>{email.subject}</div>
+        </Link>
+      </li>
+    ))}
+  </ul>
+);
+
+export const Homepage = () => {
   const [emails, updateEmails] = useState(EmailData);
 
-  function onSearch(results){
+  function onSearch(results) {
     updateEmails(results);
   }
 
   return (
     <div>
       <h1>Email List with Updated IDs</h1>
-      <FilterForm onSearch={onSearch}/>
-      <ul>
-        {emails.map(email => (
-          <li key={email.id}>
-            <div>{email.id}</div>
-            <strong>{email.subject}</strong>
-            <p>
-              <strong>From:</strong> {email.sender} | <strong>To:</strong> {email.recipient}
-            </p>
-            <p>{email.body}</p>
-            <p>
-              <strong>Timestamp:</strong> {email.timestamp} | <strong>Signed By:</strong> {email.signed_by}
-            </p>
-            <p>
-              <strong>Security:</strong> {email.security} | <strong>Starred:</strong> {email.starred.toString()}
-            </p>
-            <hr />
-          </li>
-        ))}
-      </ul>
+      <FilterForm onSearch={onSearch} />
+      <EmailList emails={emails} />
+      <Outlet />
     </div>
   );
 };
 
-export default Homepage;
+
+export const OpenMailWrapper = () => {
+  const { id } = useParams();
+  const email = EmailData.find((email) => email.id === id);
+  return <OpenMail email={email} />;
+};
+

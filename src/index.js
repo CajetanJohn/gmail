@@ -1,20 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 import LoadingComponent from './Pages/Loading';
-import Homepage from './Pages/Homepage';
+import {OpenMailWrapper, Homepage} from './Pages/Homepage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-const App = () => (
+const root = createRoot(document.getElementById('root'));
+
+root.render(
   <React.StrictMode>
     <Router>
-      <div>
-        <Routes>
-          <Route path='/home' element={<Homepage />} />
-          <Route path='/' element={<LoadingComponent />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path='/home' element={<Homepage />} />
+        <Route path='/' element={<LoadingComponent />} />
+        <Route path="/hemail/:id" element={<OpenMailWrapper />} />
+      </Routes>
     </Router>
   </React.StrictMode>
 );
-
-ReactDOM.render(<App />, document.getElementById('root'));
