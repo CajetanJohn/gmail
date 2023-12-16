@@ -1,44 +1,59 @@
-// Homepage.js
 import React, { useState, useEffect } from 'react';
-import { EmailData } from '../Utils/Data/DataFetch.js';
-import FilterForm from '../Components/Forms/FilterForm.js';
-import { Routes, Route, Link, useParams, Outlet } from 'react-router-dom';
-import OpenMail from '../Components/Sections//OpenMail';
+import {EmailData} from '../Utils/Data/DataFetch'
+import {OpenMail} from '../Components/Sections/OpenMail';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 
-const EmailList = ({ emails }) => (
+export const EmailList = ({ emails, onSelectEmail }) => (
   <ul>
     {emails.map((email) => (
-      <li key={email.id}>
-        <Link to={`/home/email/${email.id}`}>
-          <div>{email.sender}</div>
-          <div>{email.subject}</div>
-        </Link>
+      <li key={email.id} onClick={() => onSelectEmail(email)}>
+        <div>{email.sender}</div>
+        <div>{email.subject}</div>
       </li>
     ))}
   </ul>
 );
 
 export const Homepage = () => {
-  const [emails, updateEmails] = useState(EmailData);
+  const [emails, setEmails] = useState(EmailData);
+  const [selectedEmail, setSelectedEmail] = useState(null);
+  const navigate = useNavigate();
 
-  function onSearch(results) {
-    updateEmails(results);
-  }
+  const handleSelectEmail = (email) => {
+    setSelectedEmail(email);
+    // Change the URL when an email is clicked
+    navigate(`/email/${email.id}`);
+  };
+
+  useEffect(() => {
+    const handlePopstate = () => {
+      // Close the opened email when the back button is clicked
+      setSelectedEmail(null);
+    };
+
+    // Add event listener for the popstate event
+    window.addEventListener('popstate', handlePopstate);
+
+    // Remove event listener on component unmount
+    return () => {
+      window.removeEventListener('popstate', handlePopstate);
+    };
+  }, []);
 
   return (
     <div>
-      <h1>Email List with Updated IDs</h1>
-      <FilterForm onSearch={onSearch} />
-      <EmailList emails={emails} />
-      <Outlet />
+      <h1>Email List</h1>
+      
+      <Routes>
+        <Route path="/home" element={<EmailList emails={emails} onSelectEmail={handleSelectEmail} />} />
+        <Route path="/home/email/:id" element={<OpenMailWrapper />} />
+      </Routes>
     </div>
   );
 };
 
-
-export const OpenMailWrapper = () => {
+const OpenMailWrapper = () => {
   const { id } = useParams();
   const email = EmailData.find((email) => email.id === id);
-  return <OpenMail email={email} />;
+  return <OpenMail selectedEmail={email} />;
 };
-

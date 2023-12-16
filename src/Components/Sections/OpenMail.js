@@ -1,27 +1,16 @@
-// EmailDetail.js
-import React from 'react';
-
-const OpenMail = ({ email }) => {
-  if (!email) {
-    return <div>No email selected</div>;
-  }
-
-  return (
-    <div>
-      <h2>{email.subject}</h2>
-      <p>
-        <strong>From:</strong> {email.sender} | <strong>To:</strong> {email.recipient}
-      </p>
-      <p>{email.body}</p>
-      <p>
-        <strong>Timestamp:</strong> {email.timestamp} | <strong>Signed By:</strong> {email.signed_by}
-      </p>
-      <p>
-        <strong>Security:</strong> {email.security} | <strong>Starred:</strong> {email.starred.toString()}
-      </p>
-      <hr />
-    </div>
-  );
-};
-
-export default OpenMail;
+export const OpenMail = ({ selectedEmail }) => (
+  <div>
+    {selectedEmail ? (
+      <div>
+        <h2>{selectedEmail.subject}</h2>
+        <p>
+          <strong>From:</strong> {selectedEmail.sender} |{' '}
+          <strong>To:</strong> {selectedEmail.recipient}
+        </p>
+        <p>{selectedEmail.body}</p>
+      </div>
+    ) : (
+      <p>No email selected</p>
+    )}
+  </div>
+);
