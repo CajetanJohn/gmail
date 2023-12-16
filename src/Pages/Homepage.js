@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {EmailData} from '../Utils/Data/DataFetch'
 import {OpenMail} from '../Components/Sections/OpenMail';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate, useParams } from 'react-router-dom';
 
 export const EmailList = ({ emails, onSelectEmail }) => (
   <ul>
@@ -43,16 +43,12 @@ export const Homepage = () => {
   return (
     <div>
       <h1>Email List</h1>
-      
-      <Routes>
-        <Route path="/home" element={<EmailList emails={emails} onSelectEmail={handleSelectEmail} />} />
-        <Route path="/home/email/:id" element={<OpenMailWrapper />} />
-      </Routes>
+      <EmailList emails={emails} onSelectEmail={handleSelectEmail} />
     </div>
   );
 };
 
-const OpenMailWrapper = () => {
+export const OpenMailWrapper = () => {
   const { id } = useParams();
   const email = EmailData.find((email) => email.id === id);
   return <OpenMail selectedEmail={email} />;
