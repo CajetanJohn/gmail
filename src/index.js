@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import store from './Utils/Data/DataFetch';
 import { Provider } from 'react-redux';
 import OpenMail from './Components/Sections/OpenMail';
+import SideNav from './Components/Navigation/SideNav/SideNav';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -14,7 +15,7 @@ root.render(
     <React.StrictMode>
       <Router>
         <Routes>
-          <Route path='/home/*' element={<Homepage />} />
+          <Route path='/home/*' element={<SideNav />} />
           <Route path='/' element={<LoadingComponent />} />
           <Route path='/email/:id' element={<OpenMail/>}/>
         </Routes>
