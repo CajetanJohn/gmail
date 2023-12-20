@@ -1,3 +1,4 @@
+import { createStore } from 'redux';
 const email ={
     "emails": [
       {
@@ -1118,4 +1119,37 @@ const email ={
                   }
                 ]
 }
-export const EmailData = email.emails
+
+const initialState = {
+  emails: email.emails,
+  selectedEmail: null,
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'SET_EMAILS':
+      return { ...state, emails: action.payload };
+    case 'SELECT_EMAIL':
+      return { ...state, selectedEmail: action.payload };
+    case 'DELETE_EMAIL':
+      return {
+        ...state,
+        emails: state.emails.filter((email) => email.id !== action.payload),
+        selectedEmail: null,
+      };
+    case 'TOGGLE_READ_STATUS':
+      return {
+        ...state,
+        emails: state.emails.map((email) =>
+          email.id === action.payload
+            ? { ...email, read: !email.read }
+            : email
+        ),
+      };
+    default:
+      return state;
+  }
+};
+const store = createStore(reducer);
+
+export default store;
