@@ -13,7 +13,6 @@ root.render(
       <Routes>
         <Route path='/home/*' element={<Homepage />} />
         <Route path='/' element={<LoadingComponent />} />
-        <Route path="/home/email/:id" element={<OpenMailWrapper />} />
       </Routes>
     </Router>
   </React.StrictMode>

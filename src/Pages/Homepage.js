@@ -21,35 +21,17 @@ export const Homepage = () => {
 
   const handleSelectEmail = (email) => {
     setSelectedEmail(email);
-    // Change the URL when an email is clicked
-    navigate(`/email/${email.id}`);
   };
-
-  useEffect(() => {
-    const handlePopstate = () => {
-      // Close the opened email when the back button is clicked
-      setSelectedEmail(null);
-    };
-
-    // Add event listener for the popstate event
-    window.addEventListener('popstate', handlePopstate);
-
-    // Remove event listener on component unmount
-    return () => {
-      window.removeEventListener('popstate', handlePopstate);
-    };
-  }, []);
-
   return (
     <div>
       <h1>Email List</h1>
-      <EmailList emails={emails} onSelectEmail={handleSelectEmail} />
+      {!selectedEmail ? (
+        <EmailList emails={emails} onSelectEmail={handleSelectEmail} />
+      ):(
+        <OpenMail mail={selectedEmail}/>
+      )}
+      
     </div>
   );
 };
 
-export const OpenMailWrapper = () => {
-  const { id } = useParams();
-  const email = EmailData.find((email) => email.id === id);
-  return <OpenMail selectedEmail={email} />;
-};
