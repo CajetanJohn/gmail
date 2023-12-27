@@ -90,3 +90,12 @@
     cursor: pointer;
   }
   
+
+  .sidenav:not(.open) {
+    width: 60px;
+  }
+  
+  .sidenav:not(.open):hover {
+    width: 300px;
+    transition: width 0.5s;
+  }

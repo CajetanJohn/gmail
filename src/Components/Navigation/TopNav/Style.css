@@ -1,0 +1,43 @@
+.top-nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    height: fit-content;
+    max-height: 80px;
+}
+
+.navigation-logo, .navigation-search, .navigation-buttons{
+    display: flex;
+}
+
+.navigation-logo *, .navigation-buttons *{
+    cursor: pointer;
+}
+
+.gmail-logo {
+    height: 40px;
+    margin-right: 20px;
+  }
+
+  .navigation-search{
+    width: 50vw;
+    height: 40px;
+    display: flex;
+    background: red;
+    border-radius: 50px;
+   
+  }
+
+  .navigation-search .search-icon, .navigation-search .filter-icon{
+    width: 30px;
+  }
+
+  .navigation-search .search-input{
+    width: auto;
+    flex-grow: auto;
+    background: none;
+    outline: none;
+    border: 1px solid black;
+    display: none;
+  }
+
