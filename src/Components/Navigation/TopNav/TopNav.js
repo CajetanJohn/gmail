@@ -1,14 +1,14 @@
 import React from 'react';
 import './Style.css';
 import { logo } from '../../../Assets/Images/ExportImages';
-//import { AiOutlineSearch } from 'react-icons/ai';
-//import { MdInbox, MdStar, MdAccessTime, MdSend, MdDrafts, MdExpandMore } from 'react-icons/md';
+import { searchIcon, filterIcon, SettingsIcon, supportIcon, menuIcon } from '../../../Assets/Icons/ExportIcons';
 
 const TopNav = () => {
   return (
     <div className="top-nav">
         <div className='navigation-logo'>
-            <img src={logo} alt='Gmail logo' className='gmail-logo'/>
+          <menuIcon/>
+          <img src={logo} alt='Gmail logo' className='gmail-logo'/>
 
         </div>
         <div className='navigation-search'>
