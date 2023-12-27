@@ -8,6 +8,7 @@
 
 .navigation-logo, .navigation-search, .navigation-buttons{
     display: flex;
+    align-items: center;
 }
 
 .navigation-logo *, .navigation-buttons *{
@@ -24,7 +25,8 @@
     height: 40px;
     display: flex;
     border-radius: 50px;
-   background: red;
+    padding: 5px 10px;
+    background: white;
   }
 
   .navigation-search .search-icon, .navigation-search .filter-icon{
@@ -32,11 +34,18 @@
   }
 
   .navigation-search .search-input{
-    width: auto;
-    flex-grow: 1;
+    width: inherit;
+    flex: 1;
     background: none;
     outline: none;
-    border: 1px solid black;
-    display: none;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
   }
 
+.icon{
+  width: 24px;
+  height: 24px;
+  margin: 0 10px;
+  cursor: pointer;
+}
