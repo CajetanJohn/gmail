@@ -1,5 +1,5 @@
 .Ui{
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -7,7 +7,7 @@
     padding: 0;
     margin:0;
     position: relative;
-    background: rgb(231, 231, 231);
+    background: var(--ui-bg);
 }
 .Ui .body{
     display: flex;
@@ -16,7 +16,7 @@
     width: 100%;
 }
 .Ui .body .email-list{
-    background: white;
+    background: var(--ui-bg-2);
     border-radius: 20px;
     padding: 0;
     margin: 0;
