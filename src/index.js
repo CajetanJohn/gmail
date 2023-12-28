@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import OpenMail from './Components/Sections/OpenMail';
 import SideNav from './Components/Navigation/SideNav/SideNav';
 import TopNav from './Components/Navigation/TopNav/TopNav';
+import "./Assets/Style/Global.css"
 
 const root = createRoot(document.getElementById('root'));
 
