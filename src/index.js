@@ -16,7 +16,7 @@ root.render(
     <React.StrictMode>
       <Router>
         <Routes>
-          <Route path='/home/*' element={<TopNav />} />
+          <Route path='/home/*' element={<Homepage />} />
           <Route path='/' element={<LoadingComponent />} />
           <Route path='/email/:id' element={<OpenMail/>}/>
         </Routes>

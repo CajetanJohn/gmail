@@ -3,11 +3,11 @@ import './Style.css';
 import { logo } from '../../../Assets/Images/ExportImages';
 import { SearchIcon, FilterIcon, SettingsIcon, SupportIcon, MenuIcon } from '../../../Assets/Icons/ExportIcons';
 
-const TopNav = () => {
+const TopNav = ({onClick}) => {
   return (
     <div className="top-nav">
         <div className='navigation-logo'>
-          <MenuIcon className='icon'/>
+          <MenuIcon className='icon' onClick={onClick}/>
           <img src={logo} alt='Gmail logo' className='gmail-logo'/>
         </div>
         <div className='navigation-search'>

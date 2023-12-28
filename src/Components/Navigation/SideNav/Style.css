@@ -1,14 +1,11 @@
 .sidenav {
     width: 60px;
     height: 100%;
-    background-color: #333;
-    position: fixed;
-    top: 0;
-    left: 0;
     overflow-x: hidden;
-    transition: 0.5s;
+    transition: 0.2s;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
   }
   
   .sidenav.open {
@@ -38,15 +35,13 @@
     padding-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
   
   .nav-item {
     display: flex;
-    flex-direction: column;
     align-items: center;
     margin: 10px 0;
-    color: white;
     cursor: pointer;
   }
   
@@ -95,7 +90,16 @@
     width: 60px;
   }
   
-  .sidenav:not(.open):hover {
+  .sidenav:not(.open).hovered .nav-items {
     width: 300px;
-    transition: width 0.5s;
+    transition: width 0.2s;
+    position: absolute;
+    left: 0;top: 0;
+    background: red;
+  
+
+  }
+
+  .menu-list{
+    cursor: pointer;
   }

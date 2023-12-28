@@ -3,9 +3,12 @@ import {OpenMail} from '../Components/Sections/OpenMail';
 import { Routes, Route, Link, useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setEmails, selectEmail, deleteEmail, toggleReadStatus } from '../Utils/Hooks/Actions';
+import SideNav from '../Components/Navigation/SideNav/SideNav';
+import TopNav from '../Components/Navigation/TopNav/TopNav';
+import './Style.css';
 
 export const EmailList = ({ emails, onSelectEmail }) => (
-  <ul>
+  <ul className='email-list'>
     {emails.map((email) => (
       <li key={email.id} onClick={() => onSelectEmail(email)}>
         <div>{email.sender}</div>
@@ -20,6 +23,11 @@ const Homepage = () => {
   const emails = useSelector((state) => state.emails);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [show, toggleShow] = useState(false);
+  
+  const ExpandSideNav =()=>{
+    return toggleShow(!show);
+  }
 
 
   const handleEmailClick = (email) => {
@@ -39,9 +47,12 @@ const Homepage = () => {
   };
 
   return (
-    <div>
-      <h1>Emails</h1>
-      <EmailList emails={emails} onSelectEmail={handleEmailClick}/>
+    <div className='Ui'>
+      <TopNav onClick={ExpandSideNav}/>
+      <div className='body'>
+        <SideNav toggleSideNav={show}/>
+        <EmailList emails={emails} onSelectEmail={handleEmailClick}/>
+      </div>
     </div>
   );
 };

@@ -2,31 +2,30 @@
 import React, { useState } from 'react';
 import './Style.css'
 
-const SideNav = () => {
-  const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+const SideNav = ({toggleSideNav}) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const menuList = [1,2,3,4,5];
 
-  const toggleSideNav = () => {
-    setIsSideNavOpen(!isSideNavOpen);
-  };
 
   const toggleMoreMenu = () => {
     setIsMoreMenuOpen(!isMoreMenuOpen);
   };
 
-  return (
-    <div className={`sidenav ${isSideNavOpen ? 'open' : 'closed'}`}>
-      <div className="sidenav-header">
-        <button className="menu-button" onClick={toggleSideNav}>
-          open stuff
-        </button>
-        <div className="app-title">Your App</div>
-      </div>
+  const expandMenu=(state)=>{
+    return setHovered(state)
+  }
 
-      <div className="nav-items">
-        {/*<NavItem icon={<FaIcons />} label="Profile" />*/}
-        <NavItem icon={'hellow'} label="Profile" />
-        <NavItem icon={'hellow'} label="Profile" />
+  return (
+    <div className={`sidenav ${toggleSideNav ? 'open' : 'closed'} ${hovered ? 'hovered' : ''}`}>
+
+      <div className="nav-items" >
+        <ul>
+          {menuList.map((item, index)=>{
+            return (<li className='nav-item' onMouseOver={()=>{expandMenu(true)}} onMouseOut={()=>{expandMenu(false)}} key={index}>{item}</li>)
+          })}
+        </ul>
+
       </div>
 
       <div className="more-menu">
