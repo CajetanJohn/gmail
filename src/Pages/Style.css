@@ -22,5 +22,15 @@
     margin: 0;
     flex: 1;
     list-style: none;
-    padding: 10px;
+    padding: 10px 0;
+}
+
+.Ui .body .email-list li{
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 5px 0;
+}
+.Ui .body .email-list li:hover{
+    box-shadow: 2px 2px 10px 1px black;
 }
