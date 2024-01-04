@@ -1,19 +1,23 @@
 .top-nav{
     display: flex;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 20px 20px;
     height: fit-content;
     max-height: 80px;
-    width: 100vw;
+    width: calc(100vw - 40px);
     position: relative;
 }
 
-.navigation-logo, .navigation-search, .navigation-buttons{
+.navigation-logo,
+.navigation-search,
+.navigation-buttons{
     display: flex;
     align-items: center;
+    margin-right: 10px;
 }
 
-.navigation-logo *, .navigation-buttons *{
+.navigation-logo *,
+.navigation-buttons *{
     cursor: pointer;
 }
 
@@ -23,19 +27,36 @@
   }
 
   .navigation-search{
-    width: 50vw;
-    height: 40px;
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    background: red;
     border-radius: 50px;
-    padding: 5px 10px;
-    background: white;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .navigation-search.on-focus{
+    z-index: 1;
+    height: fit-content;
+    border-radius: 25px;
+    background: var(--ui-bg-2);
   }
 
-  .navigation-search .search-icon, .navigation-search .filter-icon{
+  .navigation-search .search-icon,
+  .navigation-search .filter-icon{
     width: 30px;
   }
 
   .navigation-search .search-input{
+    width: 50vw;
+    height: 40px;
+    display: flex;
+    padding: 5px 10px;
+    align-items: center;
+  }
+  .navigation-search .search-input input{
     width: inherit;
     flex: 1;
     background: none;
@@ -50,4 +71,7 @@
   height: 24px;
   margin: 0 10px;
   cursor: pointer;
+}
+
+.suggestion-list{
 }

@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { EmailData } from '../Data/DataFetch';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useEmailSearch = () => {
+  const emails = useSelector((state) => state.emails);
+
   const [searchParams, setSearchParams] = useState({
     from: '',
     to: '',
@@ -20,9 +22,7 @@ const useEmailSearch = () => {
   });
 
   const searchEmails = () => {
-    const filteredEmails = EmailData.filter(email => {
-      const withinDateRange = checkDateWithin(email.timestamp, searchParams.dateWithin);
-
+    const filteredEmails = emails.filter((email) => {
       return (
         checkTextMatch(email.sender, searchParams.from) &&
         checkTextMatch(email.recipient, searchParams.to) &&
@@ -30,7 +30,7 @@ const useEmailSearch = () => {
         checkTextMatch(email.body, searchParams.includes) &&
         checkTextNotMatch(email.body, searchParams.excludes) &&
         checkSize(email.size, searchParams.size) &&
-        withinDateRange
+        checkDateWithin(email.timestamp, searchParams.dateWithin)
       );
     });
 

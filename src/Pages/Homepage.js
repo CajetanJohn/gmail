@@ -32,9 +32,11 @@ const Homepage = () => {
 
   const handleEmailClick = (email) => {
     try{dispatch(selectEmail(email));}
-    catch(error){console.log(error);}
-    finally{console.log(email);}
-    navigate(`/email/${email.id}`)
+
+    catch(error){console.warn(error);}
+
+    finally{navigate(`/email/${email.id}`)}
+    
   };
 
   const handleDeleteClick = (id) => {

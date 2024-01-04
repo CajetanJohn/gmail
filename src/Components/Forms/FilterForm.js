@@ -1,8 +1,10 @@
 import React from 'react';
 import useEmailSearch from '../../Utils/Hooks/Search';
+import { useDispatch} from 'react-redux';
 
-const EmailSearchForm = ({ onSearch }) => {
+const EmailSearchForm = () => {
   const { searchParams, setSearchParams, searchEmails } = useEmailSearch();
+  const dispatch = useDispatch();
 
   const handleInputChange = (field, value) => {
     setSearchParams(prevParams => ({
@@ -11,10 +13,10 @@ const EmailSearchForm = ({ onSearch }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const results = searchEmails();
-    onSearch(results);
+    const results = await(searchEmails());
+    dispatch({ type: 'FILTER_EMAILS', payload: results });
   };
 
   return (

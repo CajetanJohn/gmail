@@ -92,7 +92,7 @@
   
   .sidenav:not(.open).hovered .nav-items {
     width: 300px;
-    transition: width 0.2s;
+    transition: width 0.5s;
     position: absolute;
     left: 0;top: 0;
     background: var(--ui-bg);
