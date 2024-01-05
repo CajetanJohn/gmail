@@ -1,7 +1,8 @@
 // store.js
 
-import { createStore } from 'redux';
 import localforage from 'localforage';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
 
 const initialState = {
   emails:[
@@ -1175,31 +1176,38 @@ const reducer = (state = initialState, action) => {
         ),
       };
     case 'SEARCH_EMAILS':
-      
       return { ...state, emails: action.payload };
     case 'FILTER_EMAILS':
       return { ...state, emails: action.payload };
     case 'UPDATE_FROM_INDEXEDDB':
       return { ...state, emails: action.payload };
+    case 'USE_ALL_MAILS':
+      return GetDataFromIndexDb();
     default:
       return state;
   }
 };
 
-const store = createStore(reducer);
 
-// Function to fetch data from IndexedDB and update the store
-/*const fetchAndStoreFromIndexedDB = async () => {
+ 
+export const GetDataFromIndexDb = async () => {
   try {
     const storedEmails = await localforage.getItem('indexedDBEmails');
     store.dispatch({ type: 'UPDATE_FROM_INDEXEDDB', payload: storedEmails || [] });
-    console.log('Data fetched from IndexedDB and stored in Redux store successfully.');
+    console.log("dataFetched");
   } catch (error) {
-    console.error('Error fetching and storing data from IndexedDB:', error);
+    console.warn('Error fetching and storing data from IndexedDB:', error);
   }
 };
-*/
-// Set an interval to fetch and store emails from IndexedDB every 1 second
-//setInterval(fetchAndStoreFromIndexedDB, 1000);
 
+export const storeDataInIndexDB = async (name, data) => {
+  try {
+    await localforage.setItem(name || 'indexedDBEmails', data || initialState.emails);
+    console.log("Data stored in IndexedDB");
+  } catch (error) {
+    console.warn('Error storing data in IndexedDB:', error);
+  }
+};
+
+const store = createStore(reducer);
 export default store;

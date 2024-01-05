@@ -4,6 +4,7 @@ import { logo } from '../../../Assets/Images/ExportImages';
 import { SearchIcon, FilterIcon, MenuIcon } from '../../../Assets/Icons/ExportIcons';
 import EmailSearchForm from '../../Forms/FilterForm';
 import useEmailSearch from '../../../Utils/Hooks/Search';
+import store, { AllMails } from '../../../Utils/Data/DataFetch';
 
 const TopNav = ({ onClick }) => {
   const [inputValue, setInputValue] = useState('');
@@ -12,7 +13,7 @@ const TopNav = ({ onClick }) => {
   const [suggestions, setSuggestions] = useState([]);
   const dispatch = useDispatch();
   const allEmails = useSelector((state) => state.emails);
-  const { searchParams, setSearchParams } = useEmailSearch();
+
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -40,18 +41,19 @@ const TopNav = ({ onClick }) => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    if (inputValue.length < 1){
-      return dispatch({ type: 'SEARCH_EMAILS', payload: allEmails });
+    if (inputValue.length === 0) {
+      return dispatch({type : 'USE_ALL_MAILS'});
     }
-
+  
     const filteredEmails = allEmails.filter((email) => {
       return Object.values(email).some((value) =>
         String(value).toLowerCase().includes(inputValue.toLowerCase())
       );
     });
-
+  
     dispatch({ type: 'SEARCH_EMAILS', payload: filteredEmails });
   };
+  
 
   return (
     <div className="top-nav">
