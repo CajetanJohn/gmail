@@ -1194,20 +1194,28 @@ export const GetDataFromIndexDb = async () => {
   try {
     const storedEmails = await localforage.getItem('indexedDBEmails');
     store.dispatch({ type: 'UPDATE_FROM_INDEXEDDB', payload: storedEmails || [] });
-    console.log("dataFetched");
   } catch (error) {
-    console.warn('Error fetching and storing data from IndexedDB:', error);
+    console.warn(error);
   }
 };
 
 export const storeDataInIndexDB = async (name, data) => {
   try {
-    await localforage.setItem(name || 'indexedDBEmails', data || initialState.emails);
-    console.log("Data stored in IndexedDB");
+    await localforage.setItem('indexedDBEmails',initialState.emails);
   } catch (error) {
-    console.warn('Error storing data in IndexedDB:', error);
+    console.warn(error);
   }
 };
+
+export const resetDataInIndexDb = async (name, data) =>{
+  try {
+    await localforage
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
+storeDataInIndexDB()
 
 const store = createStore(reducer);
 export default store;
